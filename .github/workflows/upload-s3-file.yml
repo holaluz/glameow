@@ -1,0 +1,22 @@
+name: Upload S3 File
+on:
+  workflow_call:
+      inputs:
+        filename:
+          description: 'name file'
+          default: 'default-name.txt'
+          required: false
+          type: string
+        s3directory:
+          description: 'name s3 directory'
+          required: false
+          type: string
+
+jobs:
+  uploadingFile:
+    name: Upload the file to Test S3 bucket
+    runs-on: self-hosted
+    steps:
+      - name: create dummy file
+        id: create-dummy-file
+        run: touch ${{ inputs.filename }} && aws s3 cp ${{ inputs.filename }} s3://${{ inputs.s3directory }}${{ inputs.filename }}
