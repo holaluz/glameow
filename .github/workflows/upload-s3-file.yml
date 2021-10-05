@@ -1,16 +1,14 @@
 name: Upload S3 File
 on:
-  workflow_call:
+  workflow_dispatch:
       inputs:
         filename:
           description: 'name file'
           default: 'default-name.txt'
           required: false
-          type: string
         s3directory:
           description: 'name s3 directory'
           required: false
-          type: string
 
 jobs:
   uploadingFile:
